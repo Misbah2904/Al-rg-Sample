@@ -1,0 +1,302 @@
+/* ==========================================================================
+   AL-RG FOOD PARADISE — MOBILE OPTIMIZATION ENHANCEMENTS
+   Optimized for WhatsApp-shared links, iOS Safari, Android Chrome
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   DESKTOP-ONLY PARALLAX (restore for non-touch screens)
+   On iOS/Android, background-attachment:fixed causes white flash — so it's
+   set to 'scroll' in style.css and we re-enable it only on pointer:fine devices
+   -------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-banner {
+    background-attachment: fixed;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TOUCH & TAP IMPROVEMENTS
+   -------------------------------------------------------------------------- */
+/* Remove blue tap highlight (iOS/Android) */
+a, button, [role="button"],
+.hamburger-btn,
+.gallery-preview-item,
+.masonry-item,
+.menu-tab-btn,
+.gallery-filter-btn,
+.highlight-card,
+.food-card,
+.back-to-top-btn,
+.floating-actions-bar .btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* eliminate 300ms tap delay */
+}
+
+/* Minimum 44×44px touch targets (Apple HIG + WCAG 2.5.5) */
+.nav-link,
+.footer-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY PREVIEW — 2-COLUMN ON MOBILE (more visual on phones)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .gallery-preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .gallery-preview-item {
+    height: 195px;
+  }
+
+  .gallery-item-title {
+    font-size: 0.95rem;
+  }
+
+  /* Always show overlay labels (no hover on touch screens) */
+  .gallery-item-overlay {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FOOD CARDS — SINGLE COLUMN WITH BETTER TOUCH
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Disable hover lift effects on touch (prevents stuck-hover on iOS) */
+  .food-card:hover,
+  .highlight-card:hover,
+  .menu-item-card:hover,
+  .masonry-item:hover {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HIGHLIGHTS GRID — 2-COL ON MOBILE (not 1-col, better visual density)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .highlight-card {
+    padding: 1.75rem 1.15rem;
+  }
+
+  .highlight-icon-box {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-title {
+    font-size: 1rem;
+  }
+
+  .highlight-desc {
+    font-size: 0.85rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CINEMATIC BANNER — MOBILE PADDING
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .cinematic-banner {
+    min-height: 420px;
+    padding: 4rem 1.25rem;
+  }
+
+  .cinematic-content .section-title {
+    font-size: clamp(1.65rem, 5.5vw, 2.2rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   LOCATION / MAP — MAP FIRST ON MOBILE (more useful placement)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .location-split {
+    grid-template-columns: 1fr;
+  }
+
+  .location-card {
+    order: 2;
+  }
+
+  .map-wrapper {
+    order: 1;
+    min-height: 260px;
+  }
+
+  .map-wrapper iframe {
+    min-height: 260px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SECTION HEADERS — TIGHTER SPACING ON MOBILE
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .section-header {
+    margin: 0 auto 2.5rem;
+  }
+
+  .section-desc {
+    font-size: 0.98rem;
+  }
+
+  .final-cta-section {
+    padding: 4.5rem 0;
+  }
+
+  .final-cta-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   LIGHTBOX — BETTER MOBILE UX (full-width bottom-sheet style)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .lightbox-modal {
+    padding: 0.75rem;
+    align-items: center;
+  }
+
+  .lightbox-content {
+    max-width: 100%;
+    width: 100%;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .lightbox-img-wrap {
+    max-height: 62vh;
+    border-radius: var(--radius-sm);
+  }
+
+  .lightbox-img-wrap img {
+    max-height: 62vh;
+  }
+
+  .lightbox-caption {
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY — REDUCED MOTION (important for users with vestibular issues)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-bg-layer {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .mouse-wheel {
+    animation: none !important;
+  }
+
+  .badge-pulse-dot {
+    animation: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   EXTRA SMALL PHONES (< 380px) — Ultra-compact layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero {
+    padding: 6rem 1rem 3.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .btn-lg {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .gallery-preview-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .floating-actions-bar .btn {
+    font-size: 0.78rem;
+    padding: 0.65rem 0.4rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRINT STYLES (for mobile browser print / save as PDF)
+   -------------------------------------------------------------------------- */
+@media print {
+  .site-header,
+  .mobile-nav-drawer,
+  .mobile-nav-backdrop,
+  .floating-actions-bar,
+  .back-to-top-btn,
+  #scroll-progress,
+  .lightbox-modal,
+  .hero-scroll-indicator {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+}
